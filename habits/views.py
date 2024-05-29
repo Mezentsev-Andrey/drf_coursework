@@ -8,7 +8,8 @@ from habits.serializers import HabitSerializer
 
 
 class HabitCreateAPIView(generics.CreateAPIView):
-    """ Создание привычки """
+    """Создание привычки"""
+
     serializer_class = HabitSerializer
     queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated]
@@ -21,6 +22,7 @@ class HabitCreateAPIView(generics.CreateAPIView):
 
 class GoodHabitListAPIView(generics.ListAPIView):
     """Просмотр всех публичных полезных привычек, но не более 5 на странице."""
+
     serializer_class = HabitSerializer
     queryset = Habit.objects.filter(sign_of_pleasant=False, is_published=True)
     permission_classes = [IsAuthenticated]
@@ -29,6 +31,7 @@ class GoodHabitListAPIView(generics.ListAPIView):
 
 class NiceHabitListAPIView(generics.ListAPIView):
     """Просмотр всех публичных приятных привычек, но не более 5 на странице."""
+
     serializer_class = HabitSerializer
     queryset = Habit.objects.filter(sign_of_pleasant=True, is_published=True)
     permission_classes = [IsAuthenticated]
@@ -37,6 +40,7 @@ class NiceHabitListAPIView(generics.ListAPIView):
 
 class OwnerHabitListAPIView(generics.ListAPIView):
     """Просмотр всех привычек пользователя, но не более 5 на странице."""
+
     serializer_class = HabitSerializer
     pagination_class = HabitsPagination
     permission_classes = [IsAuthenticated, IsOwner]
@@ -47,6 +51,7 @@ class OwnerHabitListAPIView(generics.ListAPIView):
 
 class HabitRetrieveView(generics.RetrieveAPIView):
     """Просмотр привычки по ID"""
+
     serializer_class = HabitSerializer
     queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
@@ -54,6 +59,7 @@ class HabitRetrieveView(generics.RetrieveAPIView):
 
 class HabitUpdateView(generics.UpdateAPIView):
     """Редактирование привычки"""
+
     serializer_class = HabitSerializer
     queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
@@ -61,5 +67,6 @@ class HabitUpdateView(generics.UpdateAPIView):
 
 class HabitDestroyView(generics.DestroyAPIView):
     """Удаление привычки"""
+
     queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]

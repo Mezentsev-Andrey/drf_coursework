@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 NULLABLE = {"null": True, "blank": True}
 
@@ -12,7 +12,9 @@ class User(AbstractUser):
     phone = models.CharField(max_length=35, verbose_name="Телефон", **NULLABLE)
     city = models.CharField(max_length=50, verbose_name="Город", **NULLABLE)
     avatar = models.ImageField(upload_to="users/", verbose_name="Аватар", **NULLABLE)
-    chat_id = models.CharField(unique=True, max_length=50, verbose_name="Телеграм", **NULLABLE)
+    chat_id = models.CharField(
+        unique=True, max_length=50, verbose_name="Телеграм", **NULLABLE
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

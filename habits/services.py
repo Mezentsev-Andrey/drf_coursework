@@ -5,17 +5,17 @@ def send_telegram_message(chat_id, message, bot_token):
     """Отправка сообщения в Telegram"""
 
     URL = "https://api.telegram.org/bot"
-    response = requests.post(
+    requests.post(
         url=f"{URL}{bot_token}/sendMessage",
         data={
-            'chat_id': chat_id,
-            'text': message,
-        }
+            "chat_id": chat_id,
+            "text": message,
+        },
     )
 
 
 def create_message(habit):
-    """ Функция создания сообщения """
+    """Функция создания сообщения"""
 
     if habit.owner.chat_id:
         chat_id = habit.owner.chat_id
