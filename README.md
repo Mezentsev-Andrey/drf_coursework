@@ -31,14 +31,14 @@
     - pip install -r requirements.txt
 
 2. Создайте файл `.env` в корневой директории и заполните необходимые переменные окружения:
-    - BASE_NAME=имя_базы_данных
-    - BASE_USER=пользователь_базы_данных
-    - BASE_PASSWORD=пароль_базы_данных
-    - HOST=хост_базы_данных
-    - PORT=порт_базы_данных
+    - POSTGRES_NAME=имя_базы_данных
+    - POSTGRES_USER=пользователь_базы_данных
+    - POSTGRES_PASSWORD=пароль_базы_данных
+    - POSTGRES_HOST=хост_базы_данных
+    - POSTGRES_PORT=порт_базы_данных
     - CELERY_BROKER_URL=URL_брокера_Celery
     - CELERY_RESULT_BACKEND=URL_бэкенда_Celery
-    - TELEGRAM_TOKEN=токен_Telegram_бота
+    - TELEGRAM_API_TOKEN=токен_Telegram_бота
 
 3. Примените миграции:
     - python manage.py migrate
@@ -47,8 +47,8 @@
     - python manage.py runserver
 
 5. Запустите Celery для обработки отложенных задач:
-    - celery -A config worker --pool=solo -l INFO
-    - celery -A config beat -l info -S django
+    - celery -A config worker -l INFO -P eventlet
+    - celery -A config beat -l INFO 
 
 
 ## Документация API
