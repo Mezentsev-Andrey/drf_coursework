@@ -1,9 +1,10 @@
 from datetime import datetime, timedelta
-from habits.models import Habit
-from habits.services import create_message, send_telegram_message
+
 from celery import shared_task
 
 from config import settings
+from habits.models import Habit
+from habits.services import create_message, send_telegram_message
 
 bot_token = settings.TELEGRAM_API_TOKEN
 

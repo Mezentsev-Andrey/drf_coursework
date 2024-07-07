@@ -34,7 +34,7 @@ class Habit(models.Model):
     next_date = models.DateField(**NULLABLE, verbose_name="Дата следующего действия")
 
     def __str__(self):
-        return f"{self.user} будет {self.action} в {self.time} в {self.place}"
+        return f"{self.owner} будет {self.action} в {self.time} в {self.place}"
 
     class Meta:
         verbose_name = "Привычка"
